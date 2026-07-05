@@ -1,0 +1,87 @@
+:root{
+  --bg:#0F172A;
+  --blue:#4F8DFF;--blue2:#8AB4FF;
+  --purple:#8B5CF6;--purple2:#A78BFA;
+  --red:#EF4444;--ok:#34D399;
+  --ink:#fff;--muted:#94A3B8;
+  --glass:rgba(255,255,255,.05);--brd:rgba(255,255,255,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100vh;background:var(--bg);color:var(--ink);
+  font-family:'Inter',-apple-system,'Segoe UI',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+  overflow-x:hidden;position:relative;
+}
+body::before,body::after{
+  content:"";position:fixed;border-radius:50%;filter:blur(130px);opacity:.2;pointer-events:none;z-index:0;
+}
+body::before{width:60vw;height:60vw;left:-18vw;top:-22vw;background:#1e3a8a}
+body::after{width:50vw;height:50vw;right:-15vw;bottom:-18vw;background:#4c1d95}
+
+#app{position:relative;z-index:1;width:min(560px,94vw);padding:2rem 0}
+.screen{
+  background:var(--glass);border:1px solid var(--brd);border-radius:24px;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  padding:2.4rem 2rem;text-align:center;
+  box-shadow:0 20px 60px rgba(2,6,23,.5);
+  animation:appear .5s cubic-bezier(.22,1,.36,1);
+}
+@keyframes appear{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+
+.kicker{font-family:ui-monospace,Menlo,monospace;font-size:.62rem;letter-spacing:.32em;color:var(--blue2);margin-bottom:1rem}
+h1{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+h1 .p{background:linear-gradient(120deg,var(--purple2),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin-top:.9rem;line-height:1.6;font-size:.95rem}
+
+.btn{
+  display:inline-block;margin-top:1.8rem;font-size:1rem;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--purple),#6D28D9);
+  border:none;border-radius:14px;padding:.95rem 2.6rem;cursor:pointer;
+  box-shadow:0 8px 30px rgba(139,92,246,.45);transition:transform .15s;text-decoration:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid var(--brd);box-shadow:none;color:var(--muted);margin-left:.6rem}
+.btn.ghost:hover{color:var(--ink);border-color:var(--blue2)}
+.btn.share{background:linear-gradient(135deg,var(--blue),#2563EB);box-shadow:0 8px 30px rgba(79,141,255,.4)}
+.btn.next{padding:.8rem 2rem;font-size:.92rem}
+.hidden{display:none}
+
+/* progress */
+.progress{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.pbar{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .4s}
+.pnum{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:var(--muted)}
+
+/* question */
+.qimg{width:100%;max-height:240px;object-fit:contain;border-radius:14px;margin-bottom:1.2rem;
+  border:1px solid var(--brd);background:rgba(0,0,0,.25)}
+.qtext{font-size:1.15rem;font-weight:700;line-height:1.45;margin-bottom:1.4rem;text-align:left}
+.opts{display:flex;flex-direction:column;gap:.6rem}
+.opt{
+  text-align:left;padding:.95rem 1.1rem;border-radius:12px;font-size:.92rem;color:var(--ink);
+  background:rgba(255,255,255,.04);border:1px solid var(--brd);cursor:pointer;
+  transition:border-color .2s,background .2s,transform .1s;font-family:inherit;
+}
+.opt:hover:not(:disabled){border-color:var(--blue2);background:rgba(79,141,255,.08);transform:translateX(3px)}
+.opt.right{border-color:var(--ok);background:rgba(52,211,153,.12);color:var(--ok)}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,.12);color:#F87171}
+.opt.dim{opacity:.4}
+.opt:disabled{cursor:default}
+
+.explain{
+  margin-top:1.1rem;text-align:left;font-size:.85rem;line-height:1.55;color:var(--muted);
+  border-left:3px solid var(--brd);padding:.7rem 1rem;border-radius:0 10px 10px 0;
+  background:rgba(255,255,255,.03);opacity:0;transition:opacity .4s;
+}
+.explain.show{opacity:1}
+.explain.good{border-left-color:var(--ok)}
+.explain.bad{border-left-color:var(--red)}
+.explain b{color:var(--ink)}
+
+/* result */
+.rank-icon{font-size:4rem;margin:.6rem 0;animation:bounce .8s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bounce{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.score{font-family:ui-monospace,Menlo,monospace;font-size:1.5rem;font-weight:700;color:var(--purple2);margin-top:.5rem}
+
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
