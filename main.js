@@ -72,7 +72,7 @@ function answer(i) {
 function renderResult() {
   const rank = [...RANKS].reverse().find(r => score >= r.min);
   const shareText = encodeURIComponent(
-    `I scored ${score}/${QUESTIONS.length} on the Starknet Privacy Quiz and earned the rank: ${rank.icon} ${rank.title}\n\nHow private are YOU? 🛡\n${location.origin}\n\n@Starknet #STRK20 #PrivateDeFi`
+    `I scored ${score}/${QUESTIONS.length} on the Starknet Privacy Quiz and earned the rank: ${rank.icon} ${rank.title}\n\nHow private are YOU? 🛡\nhttps://starknet-privacy-quiz.vercel.app\n\n@Starknet #STRK20`
   );
 
   app.innerHTML = `
